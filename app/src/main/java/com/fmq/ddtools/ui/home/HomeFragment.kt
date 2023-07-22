@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.fmq.ddtools.R
 import com.fmq.ddtools.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

@@ -22,17 +22,20 @@ class SettingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(SettingViewModel::class.java)
-
+        val settingViewModel =
+            ViewModelProvider(this)[SettingViewModel::class.java]
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        settingViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onDestroyView() {

@@ -3,10 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/about"
+        android:id="@+id/info"
         android:icon="@drawable/ic_about_info"
-        android:title="@string/about"
+        android:title="@string/info"
         app:showAsAction="always" />
+    <group>
 
-
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/ic_about_info"
+            android:title="@string/title_setting" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_about_info"
+            android:title="@string/about"/>
+    </group>
 </menu>
