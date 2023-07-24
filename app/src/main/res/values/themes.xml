@@ -16,6 +16,8 @@
     </style>
 
     <style name="Theme.DDTools.Start" parent="Theme.DDTools">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/purple_500</item>
@@ -23,4 +25,13 @@
         <item name="android:windowBackground">@color/purple_500</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
+
+    <style name="Theme.DDTools.tablet" parent="Theme.DDTools">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/black</item>
+    </style>
+
 </resources>

@@ -16,6 +16,18 @@
         android:layout_marginBottom="10dp"
         android:background="@color/white" />
 
+    <ImageView
+        android:id="@+id/tools_ingredient_search"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_search"
+        app:layout_constraintEnd_toStartOf="@id/view_interval1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tools_ingredient_search_text"
         android:layout_width="wrap_content"
@@ -26,32 +38,13 @@
         app:layout_constraintStart_toStartOf="@+id/tools_ingredient_search"
         app:layout_constraintTop_toBottomOf="@+id/tools_ingredient_search" />
 
-    <TextView
-        android:id="@+id/tools_dynamic_search_view_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/dynamic"
-        app:layout_constraintEnd_toEndOf="@+id/tools_dynamic_search"
-        app:layout_constraintStart_toStartOf="@+id/tools_dynamic_search"
-        app:layout_constraintTop_toBottomOf="@+id/tools_dynamic_search" />
-
-    <ImageView
-        android:id="@+id/tools_ingredient_search"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/ic_search"
-        app:layout_constraintEnd_toStartOf="@id/view_interval"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <View
-        android:id="@+id/view_interval"
-        android:layout_width="1dp"
+        android:id="@+id/view_interval1"
+        android:layout_width="5dp"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#54C0C0C0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -64,6 +57,46 @@
         android:contentDescription="@string/todo"
         android:src="@drawable/ic_dynamic_query"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/view_interval"
+        app:layout_constraintStart_toEndOf="@id/view_interval1"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tools_dynamic_search_view_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/dynamic"
+        app:layout_constraintEnd_toEndOf="@+id/tools_dynamic_search"
+        app:layout_constraintStart_toStartOf="@+id/tools_dynamic_search"
+        app:layout_constraintTop_toBottomOf="@+id/tools_dynamic_search" />
+
+    <View
+        android:id="@+id/view_interval2"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="20dp"
+        android:background="#54C0C0C0"
+        app:layout_constraintTop_toBottomOf="@id/tools_ingredient_search_text" />
+
+    <ImageView
+        android:id="@+id/tools_tablet"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_tablet"
+        app:layout_constraintEnd_toStartOf="@+id/view_interval1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_interval2" />
+
+    <TextView
+        android:id="@+id/tools_tablet_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/tablet"
+        app:layout_constraintEnd_toEndOf="@+id/tools_tablet"
+        app:layout_constraintStart_toStartOf="@+id/tools_tablet"
+        app:layout_constraintTop_toBottomOf="@+id/tools_tablet" />
 </androidx.constraintlayout.widget.ConstraintLayout>

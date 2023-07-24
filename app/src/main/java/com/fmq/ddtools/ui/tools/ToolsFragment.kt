@@ -1,13 +1,14 @@
 package com.fmq.ddtools.ui.tools
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.fmq.ddtools.databinding.FragmentToolsBinding
+import com.fmq.ddtools.ui.tools.tablet.TabletEditActivity
 
 class ToolsFragment : Fragment() {
 
@@ -19,13 +20,23 @@ class ToolsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val toolsViewModel = ViewModelProvider(this)[ToolsViewModel::class.java]
         _binding = FragmentToolsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val toolsViewModel = ViewModelProvider(this)[ToolsViewModel::class.java]
+        val tablet = binding.toolsTablet
+        val tabletText = binding.toolsTabletText
+        tablet.setOnClickListener {
+            startActivity(Intent(activity, TabletEditActivity::class.java))
+        }
+        tabletText.setOnClickListener {
+            startActivity(Intent(activity, TabletEditActivity::class.java))
+        }
+
         toolsViewModel.text.observe(viewLifecycleOwner) {
 
         }
-        return root
+
+
+        return binding.root
     }
 
     override fun onDestroyView() {
