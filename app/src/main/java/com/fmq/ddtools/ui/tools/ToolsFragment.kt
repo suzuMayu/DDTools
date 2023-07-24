@@ -12,9 +12,6 @@ import com.fmq.ddtools.databinding.FragmentToolsBinding
 class ToolsFragment : Fragment() {
 
     private var _binding: FragmentToolsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,15 +19,11 @@ class ToolsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val toolsViewModel =
-            ViewModelProvider(this).get(ToolsViewModel::class.java)
-
+        val toolsViewModel = ViewModelProvider(this)[ToolsViewModel::class.java]
         _binding = FragmentToolsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
         toolsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
         }
         return root
     }

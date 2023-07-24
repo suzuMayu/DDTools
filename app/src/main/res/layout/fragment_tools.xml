@@ -4,19 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#54C0C0C0"
     tools:context=".ui.tools.ToolsFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <View
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/tools_ingredient_search_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="@string/ingredient"
+        app:layout_constraintEnd_toEndOf="@+id/tools_ingredient_search"
+        app:layout_constraintStart_toStartOf="@+id/tools_ingredient_search"
+        app:layout_constraintTop_toBottomOf="@+id/tools_ingredient_search" />
+
+    <TextView
+        android:id="@+id/tools_dynamic_search_view_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/dynamic"
+        app:layout_constraintEnd_toEndOf="@+id/tools_dynamic_search"
+        app:layout_constraintStart_toStartOf="@+id/tools_dynamic_search"
+        app:layout_constraintTop_toBottomOf="@+id/tools_dynamic_search" />
+
+    <ImageView
+        android:id="@+id/tools_ingredient_search"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_search"
+        app:layout_constraintEnd_toStartOf="@id/view_interval"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_interval"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/tools_dynamic_search"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_dynamic_query"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_interval"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
