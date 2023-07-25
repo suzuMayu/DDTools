@@ -4,24 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_500"
+    android:background="@color/black"
     tools:context=".ui.tools.tablet.TabletActivity">
 
 
     <com.fmq.ddtools.ui.tools.tablet.MarqueeTextView
-        android:id="@+id/texts"
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
-        android:singleLine="true"
         android:text="@string/text_title"
         android:textColor="@color/white"
         android:textSize="300sp"
         android:textStyle="bold"
+        app:gradientFirst="@color/blue"
+        app:gradientSecond="@color/green"
+        app:gradientThird="@color/yellow"
+        app:gradientFourth="@color/blue"
         app:marqueeRepeat="fillLoop"
-        app:marqueeSpeed="4" />
+        app:marqueeSpeed="5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

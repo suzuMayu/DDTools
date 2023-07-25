@@ -1,10 +1,7 @@
 package com.fmq.ddtools.ui.tools.tablet
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
-import android.view.animation.Animation
-import android.view.animation.TranslateAnimation
+import androidx.appcompat.app.AppCompatActivity
 import com.fmq.ddtools.databinding.ActivityTabletBinding
 
 class TabletActivity : AppCompatActivity() {
@@ -16,6 +13,6 @@ class TabletActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTabletBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.texts.start()
+        binding.text.start()
     }
 }

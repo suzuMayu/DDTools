@@ -1,9 +1,13 @@
 package com.fmq.ddtools.ui.tools.tablet
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.LinearGradient
 import android.graphics.Paint
+import android.graphics.RectF
+import android.graphics.Shader
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
@@ -94,6 +98,50 @@ open class MarqueeTextView @JvmOverloads constructor(
         }
 
     /**
+     * 文本第一个填充颜色
+     */
+    @ColorInt
+    var gradientFirst = 0
+        set(value) {
+            if (value != field) {
+                field = value
+            }
+        }
+
+    /**
+     * 文本第二个填充颜色
+     */
+    @ColorInt
+    var gradientSecond = 0
+        set(value) {
+            if (value != field) {
+                field = value
+            }
+        }
+
+    /**
+     * 文本第三个填充颜色
+     */
+    @ColorInt
+    var gradientThird = 0
+        set(value) {
+            if (value != field) {
+                field = value
+            }
+        }
+
+    /**
+     * 文本第四个填充颜色
+     */
+    @ColorInt
+    var gradientFourth = 0
+        set(value) {
+            if (value != field) {
+                field = value
+            }
+        }
+
+    /**
      * 最终绘制显示的文本
      */
     private var mFinalDrawText: String = ""
@@ -170,7 +218,7 @@ open class MarqueeTextView @JvmOverloads constructor(
     /**
      * 是否重置文本绘制的位置，默认为true
      */
-    var isResetLocation = true
+    private var isResetLocation = true
     private var xLocation = 0f //文本的x坐标
 
     /**
@@ -186,11 +234,13 @@ open class MarqueeTextView @JvmOverloads constructor(
         private set
 
     /**画笔*/
-    protected val textPaint: TextPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
+    private val textPaint: TextPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
 
     private var textHeight = 0f
     private var resetInit = true
 
+    /**渐变色数组*/
+    private lateinit var textGradientColors: IntArray
     private val mHandler by lazy { MyHandler(this) }
 
     /**
@@ -203,6 +253,7 @@ open class MarqueeTextView @JvmOverloads constructor(
         initPaint()
     }
 
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (resetInit && text.isNotEmpty()) {
@@ -235,6 +286,12 @@ open class MarqueeTextView @JvmOverloads constructor(
         if (mFinalDrawText.isNotBlank()) {
             canvas.drawText(mFinalDrawText, xLocation, height / 2 + textHeight / 2, textPaint)
         }
+        val mRectF = RectF(0f, 0f, width.toFloat(), height.toFloat())
+
+        if (textGradientColors.size > 1) textPaint.shader = LinearGradient(
+            0f, 0f, mRectF.right, mRectF.bottom,
+            textGradientColors, null, Shader.TileMode.CLAMP
+        )
     }
 
     override fun onAttachedToWindow() {
@@ -272,6 +329,10 @@ open class MarqueeTextView @JvmOverloads constructor(
         textColor = a.getColor(R.styleable.MarqueeTextView_android_textColor, textColor)
         isResetLocation = a.getBoolean(R.styleable.MarqueeTextView_marqueeResetLocation, true)
         speed = a.getFloat(R.styleable.MarqueeTextView_marqueeSpeed, 1f)
+        gradientFirst = a.getColor(R.styleable.MarqueeTextView_gradientFirst, 0)
+        gradientSecond = a.getColor(R.styleable.MarqueeTextView_gradientSecond, 0)
+        gradientThird = a.getColor(R.styleable.MarqueeTextView_gradientThird, 0)
+        gradientFourth = a.getColor(R.styleable.MarqueeTextView_gradientFourth, 0)
         textSize = a.getDimension(R.styleable.MarqueeTextView_android_textSize, 12f)
         textItemDistance = a.getDimension(R.styleable.MarqueeTextView_marqueeItemDistance, 50f)
         startLocationDistance = a.getFloat(
@@ -281,6 +342,13 @@ open class MarqueeTextView @JvmOverloads constructor(
         repeat = a.getInt(R.styleable.MarqueeTextView_marqueeRepeat, REPEAT_SINGLE_LOOP)
         text = a.getText(R.styleable.MarqueeTextView_android_text)?.toString() ?: ""
         a.recycle()
+        val colorList = ArrayList<Int>()
+        if (gradientFirst != 0) colorList.add(gradientFirst)
+        if (gradientSecond != 0) colorList.add(gradientSecond)
+        if (gradientThird != 0) colorList.add(gradientThird)
+        if (gradientFourth != 0) colorList.add(gradientFourth)
+        textGradientColors = colorList.toIntArray()
+
     }
 
     /**
@@ -393,7 +461,6 @@ open class MarqueeTextView @JvmOverloads constructor(
                     if (speed > 0) {
                         xLocation -= speed
                         invalidate()
-                        // 1 毫秒绘制一次
                         sendEmptyMessageDelayed(WHAT_RUN, 1)
                     }
                 }

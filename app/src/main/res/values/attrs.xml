@@ -21,6 +21,14 @@
         <attr name="marqueeSpeed" format="float" />
         <!--重新改变内容的时候 ， 是否初始化 位置，默认为true，改变-->
         <attr name="marqueeResetLocation" format="boolean" />
+        <!--文本渐变的第一个颜色-->
+        <attr name="gradientFirst" format="reference|color" />
+        <!--文本渐变的第二个颜色-->
+        <attr name="gradientSecond" format="reference|color" />
+        <!--文本渐变的第三个颜色-->
+        <attr name="gradientThird" format="reference|color" />
+        <!--文本渐变的第四个颜色-->
+        <attr name="gradientFourth" format="reference|color" />
     </declare-styleable>
 
 </resources>
