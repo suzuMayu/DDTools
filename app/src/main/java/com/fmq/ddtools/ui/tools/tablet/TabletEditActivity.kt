@@ -1,10 +1,9 @@
 package com.fmq.ddtools.ui.tools.tablet
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import com.fmq.ddtools.databinding.ActivityTabletBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.fmq.ddtools.databinding.ActivityTabletEditBinding
 import com.fmq.ddtools.utils.PublicUtils
 
@@ -16,7 +15,7 @@ class TabletEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTabletEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.te.setOnClickListener {
+        binding.tabletEditBtn.setOnClickListener {
             startActivity(Intent(this, TabletActivity::class.java))
         }
         PublicUtils.addTitleIconBackBtn(this)

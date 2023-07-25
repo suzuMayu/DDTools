@@ -13,5 +13,7 @@
     <string name="ingredient">成分查询</string>
     <string name="dynamic">动态浏览</string>
     <string name="tablet">写字板</string>
-    <string name="text_title">\t\t关注永雏塔菲喵，关注永雏塔菲谢谢喵</string>
+    <string name="text_tablet">\t\t关注永雏塔菲喵，关注永雏塔菲谢谢喵</string>
+    <string name="text_sure">确定</string>
+    <string name="text_tablet_content">在这里写内容，比如：\n关注永雏塔菲喵！\n关注永雏塔菲谢谢喵！</string>
 </resources>

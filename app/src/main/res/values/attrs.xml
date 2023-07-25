@@ -29,6 +29,34 @@
         <attr name="gradientThird" format="reference|color" />
         <!--文本渐变的第四个颜色-->
         <attr name="gradientFourth" format="reference|color" />
+        <!--渲染模式-->
+        <attr name="tileMode" format="enum">
+            <!--拉伸-->
+            <enum name="CLAMP" value="0" />
+            <!--重复-->
+            <enum name="REPEAT" value="1" />
+            <!--镜像-->
+            <enum name="MIRROR" value="2" />
+        </attr>
+        <!--渐变样式-->
+        <attr name="gradientStyle" format="enum">
+            <!--左下角-->
+            <enum name="lowerLeft" value="0" />
+            <!--左上角-->
+            <enum name="upperLeft" value="1" />
+            <!--右下角-->
+            <enum name="lowerRight" value="2" />
+            <!--右上角-->
+            <enum name="upperRight" value="3" />
+            <!--左侧-->
+            <enum name="left" value="4" />
+            <!--右侧-->
+            <enum name="right" value="5" />
+            <!--上方-->
+            <enum name="top" value="6" />
+            <!--下方-->
+            <enum name="bottom" value="7" />
+        </attr>
     </declare-styleable>
 
 </resources>

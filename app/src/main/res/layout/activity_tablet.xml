@@ -8,22 +8,24 @@
     tools:context=".ui.tools.tablet.TabletActivity">
 
 
-    <com.fmq.ddtools.ui.tools.tablet.MarqueeTextView
+    <com.fmq.ddtools.view.MarqueeTextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="center"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
-        android:text="@string/text_title"
+        android:text="@string/text_tablet"
         android:textColor="@color/white"
         android:textSize="300sp"
         android:textStyle="bold"
-        app:gradientFirst="@color/blue"
+        app:gradientFirst="@color/red"
         app:gradientSecond="@color/green"
         app:gradientThird="@color/yellow"
         app:gradientFourth="@color/blue"
+        app:gradientStyle="left"
+        app:tileMode="CLAMP"
         app:marqueeRepeat="fillLoop"
         app:marqueeSpeed="5" />
 

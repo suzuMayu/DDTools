@@ -1,13 +1,8 @@
-package com.fmq.ddtools.ui.tools.tablet
+package com.fmq.ddtools.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Paint
-import android.graphics.RectF
-import android.graphics.Shader
+import android.graphics.*
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
@@ -40,7 +35,7 @@ open class MarqueeTextView @JvmOverloads constructor(
         const val REPEAT_FILL_LOOP = -1 // 填充后循环
     }
 
-    /***
+    /**
      * 滚动速度
      */
     var speed = 1f
@@ -174,7 +169,9 @@ open class MarqueeTextView @JvmOverloads constructor(
             }
         }
 
-    /**item间距，*/
+    /**
+     * item间距
+     */
     @Px
     var textItemDistance = 50f
         set(value) {
@@ -190,7 +187,7 @@ open class MarqueeTextView @JvmOverloads constructor(
     /**
      * 滚动模式
      */
-    var repeat = REPEAT_SINGLE_LOOP
+    private var repeat = REPEAT_SINGLE_LOOP
         set(value) {
             if (value != field) {
                 field = value
@@ -212,6 +209,26 @@ open class MarqueeTextView @JvmOverloads constructor(
                 value < 0f -> 0f
                 value > 1f -> 1f
                 else -> value
+            }
+        }
+
+    /**
+     * 渲染模式
+     */
+    var tileMode = 0
+        set(value) {
+            if (value != field) {
+                field = value
+            }
+        }
+
+    /**
+     * 渐变色样式
+     */
+    var gradientStyle = 0
+        set(value) {
+            if (value != field) {
+                field = value
             }
         }
 
@@ -286,12 +303,136 @@ open class MarqueeTextView @JvmOverloads constructor(
         if (mFinalDrawText.isNotBlank()) {
             canvas.drawText(mFinalDrawText, xLocation, height / 2 + textHeight / 2, textPaint)
         }
-        val mRectF = RectF(0f, 0f, width.toFloat(), height.toFloat())
+        if (textGradientColors.size > 1) {
+            val mRectF = RectF(0f, 0f, width.toFloat(), height.toFloat())
+            when (gradientStyle) {
+                0 -> {
+                    textPaint.shader = LinearGradient(
+                        0f, mRectF.bottom, mRectF.right, 0f,
+                        textGradientColors,
+                        null,
+                        when (tileMode) {
+                            0 -> Shader.TileMode.CLAMP
+                            1 -> Shader.TileMode.REPEAT
+                            2 -> Shader.TileMode.MIRROR
+                            else -> {
+                                Shader.TileMode.CLAMP
+                            }
+                        }
+                    )
+                }
+                1 -> {
+                    textPaint.shader = LinearGradient(
+                        0f, 0f, mRectF.right, mRectF.bottom,
+                        textGradientColors,
+                        null,
+                        when (tileMode) {
+                            0 -> Shader.TileMode.CLAMP
+                            1 -> Shader.TileMode.REPEAT
+                            2 -> Shader.TileMode.MIRROR
+                            else -> {
+                                Shader.TileMode.CLAMP
+                            }
+                        }
+                    )
+                }
+                2 -> {
+                    textPaint.shader = LinearGradient(
+                        mRectF.right, 0f, 0f, mRectF.bottom,
+                        textGradientColors,
+                        null,
+                        when (tileMode) {
+                            0 -> Shader.TileMode.CLAMP
+                            1 -> Shader.TileMode.REPEAT
+                            2 -> Shader.TileMode.MIRROR
+                            else -> {
+                                Shader.TileMode.CLAMP
+                            }
+                        }
+                    )
+                }
+                3 -> {
+                    textPaint.shader = LinearGradient(
+                        mRectF.right, mRectF.bottom, 0f, 0f,
+                        textGradientColors,
+                        null,
+                        when (tileMode) {
+                            0 -> Shader.TileMode.CLAMP
+                            1 -> Shader.TileMode.REPEAT
+                            2 -> Shader.TileMode.MIRROR
+                            else -> {
+                                Shader.TileMode.CLAMP
+                            }
+                        }
+                    )
+                }
+                4 -> {
+                    textPaint.shader = LinearGradient(
+                        0f, 0f, mRectF.right, 0f,
+                        textGradientColors,
+                        null,
+                        when (tileMode) {
+                            0 -> Shader.TileMode.CLAMP
+                            1 -> Shader.TileMode.REPEAT
+                            2 -> Shader.TileMode.MIRROR
+                            else -> {
+                                Shader.TileMode.CLAMP
+                            }
+                        }
+                    )
+                }
+                5 -> {
+                    textPaint.shader = LinearGradient(
+                        mRectF.right,
+                        0f,
+                        0f,
+                        0f,
+                        textGradientColors,
+                        null,
+                        when (tileMode) {
+                            0 -> Shader.TileMode.CLAMP
+                            1 -> Shader.TileMode.REPEAT
+                            2 -> Shader.TileMode.MIRROR
+                            else -> {
+                                Shader.TileMode.CLAMP
+                            }
+                        }
+                    )
+                }
+                6 -> {
+                    textPaint.shader = LinearGradient(
+                        0f, 0f, 0f, mRectF.bottom,
+                        textGradientColors,
+                        null,
+                        when (tileMode) {
+                            0 -> Shader.TileMode.CLAMP
+                            1 -> Shader.TileMode.REPEAT
+                            2 -> Shader.TileMode.MIRROR
+                            else -> {
+                                Shader.TileMode.CLAMP
+                            }
+                        }
+                    )
+                }
+                7 -> {
+                    textPaint.shader = LinearGradient(
+                        0f, mRectF.bottom, 0f, 0f,
+                        textGradientColors,
+                        null,
+                        when (tileMode) {
+                            0 -> Shader.TileMode.CLAMP
+                            1 -> Shader.TileMode.REPEAT
+                            2 -> Shader.TileMode.MIRROR
+                            else -> {
+                                Shader.TileMode.CLAMP
+                            }
+                        }
+                    )
+                }
+            }
+        }
 
-        if (textGradientColors.size > 1) textPaint.shader = LinearGradient(
-            0f, 0f, mRectF.right, mRectF.bottom,
-            textGradientColors, null, Shader.TileMode.CLAMP
-        )
+
     }
 
     override fun onAttachedToWindow() {
@@ -325,6 +466,7 @@ open class MarqueeTextView @JvmOverloads constructor(
     }
 
     private fun initAttrs(attrs: AttributeSet?) {
+        val colorList = ArrayList<Int>()
         val a = context.obtainStyledAttributes(attrs, R.styleable.MarqueeTextView)
         textColor = a.getColor(R.styleable.MarqueeTextView_android_textColor, textColor)
         isResetLocation = a.getBoolean(R.styleable.MarqueeTextView_marqueeResetLocation, true)
@@ -335,19 +477,19 @@ open class MarqueeTextView @JvmOverloads constructor(
         gradientFourth = a.getColor(R.styleable.MarqueeTextView_gradientFourth, 0)
         textSize = a.getDimension(R.styleable.MarqueeTextView_android_textSize, 12f)
         textItemDistance = a.getDimension(R.styleable.MarqueeTextView_marqueeItemDistance, 50f)
-        startLocationDistance = a.getFloat(
-            R.styleable.MarqueeTextView_marqueeStartLocationDistance,
-            0f
-        )
+        startLocationDistance =
+            a.getFloat(R.styleable.MarqueeTextView_marqueeStartLocationDistance, 0f)
         repeat = a.getInt(R.styleable.MarqueeTextView_marqueeRepeat, REPEAT_SINGLE_LOOP)
         text = a.getText(R.styleable.MarqueeTextView_android_text)?.toString() ?: ""
-        a.recycle()
-        val colorList = ArrayList<Int>()
+        tileMode = a.getInt(R.styleable.MarqueeTextView_tileMode, 0)
+        gradientStyle = a.getInt(R.styleable.MarqueeTextView_gradientStyle, 0)
         if (gradientFirst != 0) colorList.add(gradientFirst)
         if (gradientSecond != 0) colorList.add(gradientSecond)
         if (gradientThird != 0) colorList.add(gradientThird)
         if (gradientFourth != 0) colorList.add(gradientFourth)
         textGradientColors = colorList.toIntArray()
+        a.recycle()
+        colorList.clear()
 
     }
 
